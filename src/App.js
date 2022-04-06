@@ -3,10 +3,10 @@ import Header from "./components/Header";
 import Drawer from "./components/Drawer";
 
 const arr = [
-{title: 'gfgfhfhgfh', price: 129, imageUrl:"img/menu-burger.svg"},
-{title: 'klk', price: 14501, imageUrl:"img/menu-burger.svg"},
-{title: 'klkDDD', price: 54561, imageUrl:"img/menu-burger.svg"},
-{title: 'klGDGDDG', price: 2354541, imageUrl:"img/menu-burger.svg"},
+{title: 'Свеча ароматическая IQTRAVELS "Цветочный букет - Соевая свеча"', price: 400, imageUrl:"img/candles/1.webp"},
+{title: 'Свеча ароматическая AROMANTIQUE "Шоколадное суфле"', price: 210, imageUrl:"img/candles/2.webp"},
+{title: 'Свеча ароматическая Aroma Doma "Роскошный цветок"', price: 422, imageUrl:"img/candles/3.webp"},
+{title: 'Свеча ароматическая AROMANTIQUE "Ежевичный щербет"', price: 215, imageUrl:"img/candles/4.webp"},
 ];
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
 <section>
   <div className="content p-40">
   <div className="d-flex align-center justify-between mb-40">    
-    <h1>Все кросовки</h1>
+    <h1>Все свечи</h1>
   <div className="serch-block d-flex">
     <img width={18} heidth={18} src="img/menu-burger.svg" alt=""/>
     <input type="text" placeholder="Поиск..."/>
@@ -28,10 +28,13 @@ function App() {
 <div className="d-flex">
 
   {arr.map((obj) => (
-     <Card 
-  title={obj.title}
-  price={obj.price}
-  imageUrl={obj.imageUrl}
+  <Card 
+    title={obj.title}
+    price={obj.price}
+    imageUrl={obj.imageUrl}
+    onClickPlus={()=>console.log('нажали плюс')}
+    onClickFavorite={()=>console.log('добовили в закладки')}
+
   />
   ))}
  

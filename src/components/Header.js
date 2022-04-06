@@ -4,8 +4,8 @@ function Header() {
   <div className = "d-flex align-center">
   <img width={40} heidth={40} src="img/menu-burger.svg" alt=""/>
   <div className = "headerinfo">
-    <h3 className="text-uppercase">React Sneakers</h3>
-    <p>Магазин лучших кросовок</p>
+    <h3 className="text-uppercase">Свечи ароматические</h3>
+    <p>Магазин по продаже ароматических свечей</p>
   </div>
 </div>
   <ul className="d-flex"> 
