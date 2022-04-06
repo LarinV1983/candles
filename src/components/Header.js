@@ -14,7 +14,8 @@ function Header() {
 <span>1205 руб.</span>
     </li>
     <li>
-<img width={18} heidth={18} src="img/menu-burger.svg" alt=""/>    </li>
+<img width={18} heidth={18} src="img/menu-burger.svg" alt=""/>    
+</li>
   </ul>
   </header>
 		);
