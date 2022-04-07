@@ -1,30 +1,24 @@
-function Drawer() {
+function Drawer({onClose, items = []}) {
 	return (
-		    <div style={{display: 'none'}} className="overlay">
-
-		          <div className="drawer">
+		    <div className="overlay">
+          <div className="drawer">
         <h2 className=" d-flex justify-between mb-30 ">Корзина 
-        <img className="removeBtn cu-p" width={11} heidth={11} src="img/cross.svg" alt=""/>
+        <img onClick ={onClose} className="removeBtn cu-p" width={11} heidth={11} src="img/cross.svg" alt=""/>
         </h2>
 
         <div className="Items">
-        <div className="cartItem mb-20 d-flex align-center">
-        <img className="mr-20" width={70} heidth={70} src="img/candles/menu-burger.svg" alt=""/> 
+        {items.map((obj)=>(  
+      <div className="cartItem mb-20 d-flex align-center">
+        <img className="mr-20" width={70} heidth={70} src={obj.imageUrl} alt=""/> 
         <div className="mr-20">
-          <p className="mb-5"> dsdsdsdsdasdsdsadd</p>
-          <b>12 999руб</b>
+          <p className="mb-5">{obj.title}</p>
+          <b>{obj.price}</b>
         </div>
-        <img className="removeBtn" width={11} heidth={11} src="img/cross.svg" alt=""/>
-        </div>
-        <div className="cartItem mb-20 d-flex align-center">
-        <img className="mr-20" width={70} heidth={70} src="img/candles/menu-burger.svg" alt=""/> 
-        <div className="mr-20">
-          <p className="mb-5"> dsdsdsdsdasdsdsadd</p>
-          <b>12 999руб</b>
-        </div>
-        <img className="removeBtn" width={11} heidth={11} src="img/cross.svg" alt=""/>
-        </div>
+        <img className="removeBtn" width={11} heidth={11} src="img/cross.svg" alt=""/> 
       </div>
+         ))};
+        
+
       <ul className="cartTotalBlock">
           <li className="d-flex">
             <span>Итого:</span>
@@ -41,6 +35,7 @@ function Drawer() {
         <button className="greenButton">Оформить заказ <img width={11} heidth={11} src="img/menu-burger.svg"/></button>
       </div>
      </div>
+    </div>
 		);
 }
 
