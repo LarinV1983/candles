@@ -1,66 +1,86 @@
-import Card from "./components/Card";
 import Header from "./components/Header";
 import Drawer from "./components/Drawer";
-import React from 'react';
+import Home from './pages/Home';
+import Favorites from './pages/Favourites'
+import {Routes, Route} from 'react-router-dom';
 
-
-// const arr = [
-// {title: 'Свеча ароматическая IQTRAVELS "Цветочный букет - Соевая свеча"', price: 400, imageUrl:"img/candles/1.webp"},
-// {title: 'Свеча ароматическая AROMANTIQUE "Шоколадное суфле"', price: 210, imageUrl:"img/candles/2.webp"},
-// {title: 'Свеча ароматическая Aroma Doma "Роскошный цветок"', price: 422, imageUrl:"img/candles/3.webp"},
-// {title: 'Свеча ароматическая AROMANTIQUE "Ежевичный щербет"', price: 215, imageUrl:"img/candles/4.webp"}
-// ];
+import axios from "axios";
+import React from "react";
 
 function App() {
   const [items, setItems] = React.useState([]);
   const [cartItems, setCartItems] = React.useState([]);
+  const [favorites, setFavorites] = React.useState([]);
   const [cartOpen, setCartOpen] = React.useState(false);
+  const [searchValue, setSearchValue] = React.useState('');
 
   React.useEffect(()=>{
-     fetch('https://624e91f177abd9e37c88446a.mockapi.io/items')
+  axios.get('https://624e91f177abd9e37c88446a.mockapi.io/items')
   .then((res)=> {
-    return res.json();
-  }).then(json => {
-    setItems(json);
+   setItems(res.data);
+  });
+   axios.get('https://624e91f177abd9e37c88446a.mockapi.io/cart')
+  .then((res)=> {
+   setCartItems(res.data);
+  });
+  axios.get('https://624e91f177abd9e37c88446a.mockapi.io/favorites')
+  .then((res)=> {
+   setFavorites(res.data);
   });
 }, []);
 
   const onAddToCart = (obj) => {
+    axios.post('https://624e91f177abd9e37c88446a.mockapi.io/cart', obj);
     setCartItems(prev => [...prev, obj]);
+      };
+
+  const onRemoveItem = (id) => {
+     axios.delete(`https://624e91f177abd9e37c88446a.mockapi.io/cart/${id}`);
+     setCartItems((prev) => prev.filter(item => item.id != id));
+  };
+
+    const onAddFavorites = async (obj) => {
+      try {
+      if (favorites.find((favObj) => favObj.id = obj.id)) {
+        axios.delete(`https://624e91f177abd9e37c88446a.mockapi.io/favorites/${obj.id}`);
+        // setFavorites((prev) => prev.filter((item) => item.id != obj.id));
+      } else {
+        const {data} = await axios.post('https://624e91f177abd9e37c88446a.mockapi.io/favorites', obj);
+        setFavorites((prev) => [...prev, data]);
+        }
+      } catch (error) {
+        alert(' Не удалось добовить товар');
+      }
+    };
+
+  const onChangeSearchInput = (event) => {
+    setSearchValue(event.target.value);
   };
   
   return (
   <div className ="wrapper">
-    {cartOpen ? <Drawer items={cartItems} onClose= {() => setCartOpen(false)}/> : null}
-    <Header onClickCart = {() => setCartOpen(true)} 
-    />
+    {cartOpen &&
+     (<Drawer items={cartItems} onClose= {() => setCartOpen(false)} onRemove={onRemoveItem}/>
+      )}
+     <Header onClickCart = {() => setCartOpen(true)}/>
 
-<section>
-  <div className="content p-40">
-  <div className="d-flex align-center justify-between mb-40">    
-    <h1>Все свечи</h1>
-  <div className="serch-block d-flex">
-    <img width={18} heidth={18} src="img/menu-burger.svg" alt=""/>
-    <input type="text" placeholder="Поиск..."/>
-  </div>
-</div>
+      <Routes>
+        <Route exact path="/" 
+          element={<Home 
+          items={items} 
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+          onChangeSearchInput={onChangeSearchInput}
+          onAddFavorites={onAddFavorites}
+          onAddToCart={onAddToCart}
+        />}/>
+      </Routes>
 
-<div className="d-flex flex-wrap">
+      <Routes>
+        <Route exact path="/favorites" 
+          element={<Favorites items={favorites} onAddFavorites={onAddFavorites}/>}/>
+      </Routes>
 
-  {items.map((item) => (
-  <Card 
-    title={item.title}
-    price={item.price}
-    imageUrl={item.imageUrl}
-    onPlus={(obj)=> onAddToCart(obj)}
-    onClickFavorite={()=>console.log('добовили в закладки')}
-
-  />
-  ))}
- 
-</div>
-</div>
-</section>
 </div>
   ); 
 }
