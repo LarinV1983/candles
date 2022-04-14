@@ -1,6 +1,7 @@
+import React from 'react';
 import Card from "../components/Card";
 
-function Favorites({items, onAddFavorites}) {
+function Favorites({favorites, onAddFavorites}) {
   return(
     <section>
   <div className="content p-40">
@@ -9,10 +10,10 @@ function Favorites({items, onAddFavorites}) {
 </div>
 
   <div className="d-flex flex-wrap">
-  {items
-    .map((item) => (
+  {favorites
+    .map((item, index) => (
   <Card
-    key={item.title}
+    key={index}
     id={item.id} 
     title={item.title}
     price={item.price}

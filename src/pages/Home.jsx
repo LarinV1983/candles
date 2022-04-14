@@ -1,3 +1,5 @@
+import React from "react";
+
 import Card from "../components/Card";
 
 
@@ -6,7 +8,9 @@ function Home({items,
           setSearchValue,
           onChangeSearchInput,
           onAddFavorites,
-          onAddToCart}) {
+          onAddToCart,
+          cartItems,
+        }) {
 	return(
 		<section>
   <div className="content p-40">
@@ -19,20 +23,18 @@ function Home({items,
 </div>
 
 <div className="d-flex flex-wrap">
-
   {items
     .filter((item) => item.title.toLowerCase()
-    .includes(searchValue.toLowerCase())).map((item) => (
+    .includes(searchValue.toLowerCase())).map((item, index) => (
   <Card
-    key={item.title} 
+    key={index} 
     title={item.title}
     price={item.price}
     imageUrl={item.imageUrl}
     onPlus={(obj)=> onAddToCart(obj)}
     onFavorite={(obj)=> onAddFavorites(obj)}
-
-    // onClickFavorite={()=>console.log('добовили в закладки')}
-
+    added={cartItems.some((obj) => Number(obj.id) === Number(item.id))}
+    loading
   />
   ))}
  

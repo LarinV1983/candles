@@ -1,3 +1,6 @@
+import React from 'react';
+import axios from 'axios';
+
 function Drawer({onClose, onRemove, items = []}) {
 	return (
 		    <div className="overlay">
@@ -9,13 +12,13 @@ function Drawer({onClose, onRemove, items = []}) {
         {items.length > 0 ? (
           <div className ="d-flex flex-column flex">
           <div className="Items">
-        {items.map((obj)=>(  
-      <div className="cartItem mb-20 d-flex align-center">
+        {items.map((obj)=> (  
+      <div key={obj.id} className="cartItem mb-20 d-flex align-center">
         <img className="mr-20" width={70} heidth={70} src={obj.imageUrl} alt=""/> 
         
         <div className="mr-20">
           <p className="mb-5">{obj.title}</p>
-          <b>{obj.price}</b>
+          <b>{obj.price} руб.</b>
         </div>
         <img onClick={() => onRemove(obj.id)}
         className="removeBtn" width={11} heidth={11} src="img/cross.svg" alt=""/> 
