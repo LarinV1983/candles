@@ -1,36 +1,42 @@
 import React from 'react';
 import ContentLoader from "react-content-loader"
 import styles from './Card.module.scss';
+import AppContext from '../../context';
 
   function Card({
-    id, onFavorite, title, 
-    imageUrl, price, onPlus, favor=false,
-    added=false, loading=false
+  id,
+  title,
+  imageUrl,
+  price,
+  onFavorite,
+  onPlus,
+  favorited = false,
+  loading = false,
   }) 
 
   {
-    const[isAdd, setIsAdd] = React.useState(added);
-    const[isFavorite, setIsFavorite] = React.useState(favor);
+    const {isItemAdded} = React.useContext(AppContext);
+    const [isFavorite, setIsFavorite] = React.useState(favorited);
+    const obj = { id, parentId: id, title, imageUrl, price };
 
 
     const onClickPlus = () => {
-      onPlus({id, title, imageUrl, price});
-      setIsAdd(! isAdd);
-    };
+    onPlus(obj);
+  };
 
-    const onClickFavorit = () => {
-      onFavorite({id, title, imageUrl, price});
-      setIsFavorite(!isFavorite);
-    };
+  const onClickFavorite = () => {
+    onFavorite(obj);
+    setIsFavorite(!isFavorite);
+  };
 
     return (
       <div className={styles.card}>
     {loading ? (
       <ContentLoader   
     speed={2}
-    width={150}
-    height={265}
-    viewBox="0 0 150 265"
+    width={155}
+    height={250}
+    viewBox="0 0 155 265"
     backgroundColor="#f3f3f3"
     foregroundColor="#ecebeb"
     >
@@ -44,23 +50,29 @@ import styles from './Card.module.scss';
   </ContentLoader>
   ) : (
   <>
-  <div className={styles.favorite} onClick ={onClickFavorit}>
-       <img width={11} heidth={11} src={isFavorite ? "img/cross.svg":"img/menu-burger.svg"} alt="Unliked"/>
-     </div>
- <img width={133} heidth={112} src={imageUrl} alt=""/>
-     <h5>{title}</h5>
-     <div className="d-flex justify-between align-center">
-       <div className="d-flex flex-column ">
-         <span>Цена:</span>
-         <b>{price} руб.</b>
-      </div>
-       <button className="button" onClick ={onClickPlus}>
-      <img width={11} heidth={11} 
-  src={isAdd ? "img/menu-burger.svg":"img/cross.svg"} alt="Plus"/></button>
-  </div>
-    {/*  </div>*/}
-      </>
-    )}
+  {onFavorite && (
+            <div className={styles.favorite} onClick={onClickFavorite}>
+              <img width= {18} height={18} src={isFavorite ? 'img/active_heart.svg' : 'img/default_heart.svg'} alt="Unliked" />
+            </div>
+          )}
+          <img className="product" width={110} height={110} src={imageUrl} alt="candles" />
+          <h5>{title}</h5>
+          <div className="d-flex justify-between align-center">
+            <div className="d-flex flex-column">
+              <span>Цена:</span>
+              <b>{price} руб.</b>
+            </div>
+            {onPlus && (
+              <img width= {18} height={18}
+                className={styles.plus}
+                onClick={onClickPlus}
+                src={isItemAdded(id) ? 'img/check-font.svg' : 'img/plus.svg'}
+                alt="Plus"
+              />
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 }
