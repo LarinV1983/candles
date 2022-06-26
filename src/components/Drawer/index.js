@@ -39,7 +39,7 @@ function Drawer({onClose, onRemove, items = [], opened}) {
     <div className={`${styles.overlay} ${opened ? styles.overlayVisible : ''}`}>
       <div className={styles.drawer}>
         <h2 className="d-flex justify-between mb-30">
-          Корзина <img width={18} height={18} onClick={onClose} className="cu-p" src="img/cross.svg" alt="Close" />
+          Корзина <img width={14} height={14} onClick={onClose} className="cu-p" src="img/cross.svg" alt="Close" />
         </h2>
 
         {items.length > 0 ? (

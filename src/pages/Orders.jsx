@@ -6,7 +6,7 @@ import axios from "axios";
 
 
 function Orders() {
-    // const { onAddToFavorit, onAddToCart } = React.useContext(AppContext);
+    const { onAddToFavorit, onAddToCart } = React.useContext(AppContext);
     const [orders, setOrders] = React.useState([]);
     const [isLoading, setIsLoading] = React.useState(true);
 

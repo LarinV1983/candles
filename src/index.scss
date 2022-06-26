@@ -7,6 +7,9 @@ body{
   -moz-osx-font-smoothing: grayscale;
   background-color: #e7f6ff;
 }
+.card{
+  justify-content: center;
+}
 
 .product{
   display: block;
@@ -24,6 +27,7 @@ button, input{
   margin: 50px auto;
 }
 header{
+  padding: 40px;
   border-bottom: 1px solid #eaeaea;
   ul{
     list-style-type: none;
@@ -31,17 +35,76 @@ header{
   img{
     margin-right: 15px;
   }
+  img:hover{
+    opacity: 0.6;
+  }
 
   h3, p{
     margin: 0;
     }
+    @media (max-width: 920px) {
+      padding-left: 20px;
+      padding-right: 20px;
+    
+    }
+     @media (max-width: 640px) {
+      padding-left: 0px;
+      padding-right: 0px;
+      .header_img{
+        margin-right: 5px;
+      }
+  }
+   @media (max-width: 390px) {
+      .header_img{
+        display: none;
+      }
+  }
+    @media (max-width: 690px) {
+      img{
+        margin-right: 10px;
+  }
+  span{
+    font-size: 14px;
+  }
+      
+    }
+    @media (max-width: 640px) {
+      flex-direction: column;
+        img{
+        margin-right: 40px;
+  }
+    .headerinfo{
+      h3{
+      text-align: center;
+      line-height: 2.5;
+      }
+      p{
+        text-align: center;
+        margin-bottom: 35px;
+        }
+      }
+    }
   }
 .content{
+
   h1{
     margin: 0;
   }
-}
 
+}
+.search{
+  padding: 40px;
+@media (max-width: 690px) {
+      padding: 15px;
+    }
+    @media (max-width: 390px) {
+      h1{
+        font-size: 16px;
+      }
+
+      padding: 15px;
+    }
+}
 
 .button{
   background: #fff;
@@ -57,13 +120,19 @@ header{
   border-radius:10px;
   padding: 0 15px;
   position: relative;
-
-  .clear {
+  .clear_img{
     position: absolute;
-    right: 0;
     width: 18px;
     height: 18px;
     top: 14px;
+    left:5px;
+  }
+  .clear {
+    position: absolute;
+    right: 5px;
+    width: 12px;
+    height: 12px;
+    top: 16px;
     right: 15px;
   }
 
@@ -73,6 +142,24 @@ header{
     font-size: 16px;
     width: 200px;
   }
+  @media (max-width: 390px) {
+      input{
+        font-size: 12px;
+        padding: 10px;
+      }
+      .clear_img{
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    top: 10px;
+    left:5px;
+  }
+  .clear {
+    
+    top: 12px;
+    right: 15px;
+  }
+    }
 }
 
 .cartTotalBlock{

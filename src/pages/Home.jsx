@@ -31,11 +31,11 @@ function Home({
 
 	return(
 		<section>
-  <div className="content p-40">
-      <div className="d-flex align-center justify-between mb-40">
+  <div className="content ">
+      <div className="search d-flex align-center justify-between mb-40">
         <h1>{searchValue ? `Поиск по запросу: "${searchValue}"` : 'Все свечи'}</h1>
         <div className="serch-block d-flex">
-          <img className="" width={18} height={18} src="img/search.svg" alt="Search"/>
+          <img className="clear_img" width={18} height={18} src="img/search.svg" alt="Search"/>
           {searchValue && (
             <img
               onClick={() => setSearchValue('')}
@@ -47,7 +47,7 @@ function Home({
           <input onChange={onChangeSearchInput} value={searchValue} placeholder="Поиск..." />
         </div>
       </div>
-      <div className="d-flex flex-wrap">{renderItems()}</div>
+      <div className="card d-flex flex-wrap ">{renderItems()}</div>
     </div>
 </section>
 	);

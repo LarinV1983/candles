@@ -55,9 +55,9 @@ import AppContext from '../../context';
               <img width= {18} height={18} src={isFavorite ? 'img/active_heart.svg' : 'img/default_heart.svg'} alt="Unliked" />
             </div>
           )}
-          <img className="product" width={110} height={110} src={imageUrl} alt="candles" />
+          <img className="product" width={100} height={100} src={imageUrl} alt="candles" />
           <h5>{title}</h5>
-          <div className="d-flex justify-between align-center">
+          <div className=" card_price d-flex justify-between align-center">
             <div className="d-flex flex-column">
               <span>Цена:</span>
               <b>{price} руб.</b>

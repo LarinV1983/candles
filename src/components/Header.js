@@ -9,10 +9,10 @@ function Header(props) {
   const totalPrice = cartItems.reduce((sum, obj) => obj.price + sum, 0);
 
 	return (
-		<header className="d-flex justify-between align-center p-40">
+		<header className=" header_text d-flex justify-between align-center">
   <Link to ="/">
   <div className = "d-flex align-center">
-  <img width={50} heidth={50} src="img/christmas_candle_background.png" alt="Logotype"/>
+  <img className = "header_img"width={50} heidth={50} src="img/christmas_candle_background.png" alt="Logotype"/>
   <div className = "headerinfo">
     <h3 className="text-uppercase">Свечи ароматические</h3>
     <p className="opacity-5">Магазин по продаже ароматических свечей</p>

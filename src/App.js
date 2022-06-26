@@ -92,7 +92,7 @@ import React from "react";
         setFavorites((prev) => [...prev, data]);
       }
     } catch (error) {
-      alert('Не удалось добавить в фавориты');
+      alert('Не удалось добавить в избранное');
       console.error(error);
     }
   };

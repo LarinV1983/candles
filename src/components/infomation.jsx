@@ -10,7 +10,7 @@ const Infomation = ({image, title, description}) => {
      <h2>{title}</h2>
       <p className="opacity-6">{description}</p>
       <button onClick = {() => setCartOpened(false)} className="greenButton">
-        <img width={14} heidth={14} src="img/angle-left.svg" alt="Arrow"/>
+        <img width={12} heidth={12} src="img/angle-left.svg" alt="Arrow"/>
         Вернутся назад
       </button>
     </div>
