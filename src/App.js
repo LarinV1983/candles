@@ -128,7 +128,7 @@ import React from "react";
      <Header onClickCart={() => setCartOpened(true)}/>
 
       <Routes>
-        <Route path={process.env.PUBLIC_URL + '/'} 
+        <Route path= "/"
           element=
           {<Home 
             items={items}
@@ -141,10 +141,10 @@ import React from "react";
             isLoading={isLoading}
         />}/>
 
-         <Route path={process.env.PUBLIC_URL + '/'} 
+         <Route path= "favorites"
           element={<Favorites/>}/>
 
-         <Route path={process.env.PUBLIC_URL + '/'} 
+         <Route path= "orders"
           element={<Orders />}/>
 
       </Routes>
