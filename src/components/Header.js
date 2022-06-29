@@ -10,7 +10,7 @@ function Header(props) {
 
 	return (
 		<header className=" header_text d-flex justify-between align-center">
-  <Link to ="/">
+  <Link to ={process.env.PUBLIC_URL + '/'}>
   <div className = "d-flex align-center">
   <img className = "header_img"width={50} heidth={50} src="img/christmas_candle_background.png" alt="Logotype"/>
   <div className = "headerinfo">
@@ -25,12 +25,12 @@ function Header(props) {
 <span>{totalPrice} руб.</span>
     </li>
     <li className="mr-20 cu-p">
-      <Link to ="/favorites">
+      <Link to ={process.env.PUBLIC_URL + '/'}>
         <img width={21} heidth={21} src="img/default_heart.svg" alt="Закладки"/>    
       </Link>
     </li>
       <li>
-    <Link to ="/orders">
+    <Link to ={process.env.PUBLIC_URL + '/'}>
         <img width={21} heidth={21} src="img/user.svg" alt="Пользователь"/>    
       </Link>
       </li>

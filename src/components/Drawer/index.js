@@ -88,7 +88,7 @@ function Drawer({onClose, onRemove, items = [], opened}) {
       description={
         isOrderComplete ? `Ваш заказ #${orderId} скоро будет передан курьерской доставке`
        : "Добавьте хотя бы один товар, чтобы сделать заказ."}
-      image={isOrderComplete ? '/img/thumbs-up-font.svg' : '/img/basket.svg'}
+      image={isOrderComplete ? 'img/thumbs-up-font.svg' : 'img/basket.svg'}
       />
     )}
     </div>
